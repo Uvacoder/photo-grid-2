@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { spawnSync } = require('child_process');
 
-const directoryWithPics = './Year2000';
+const directoryWithPics = './photos';
 const numPicsPerRow = 25;
 
 const findAllFiles = dir => {
