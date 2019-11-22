@@ -42,7 +42,7 @@ while (i < photosArray.length) {
   const photosInRowWithNewResolution = photosInRow.map(filename => `'${filename}[${resolutionInGrid}]'`);
   const rowNum = String(i/numPicsPerRow).padStart(3, '0');
   const args = [...photosInRowWithNewResolution, '+append', `${gridDirectory}/row_${rowNum}.jpg`];
-  console.log(`Generating row ${rowNum}`);
+  console.log(`Generating row ${rowNum} of ${Math.ceil(photosArray.length/numPicsPerRow)}...`);
   execSync(`magick ${args.join(' ')}`);
   i += numPicsPerRow;
 }
