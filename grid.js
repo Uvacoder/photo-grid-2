@@ -5,6 +5,9 @@ const shortid = require('shortid');
 const directoryWithPics = './photos';
 const numPicsPerRow = 50;
 const resolutionInGrid = '640x480';
+const inputPhotosExtension = '.jpg';
+const outputPhotoExtension = '.png';
+
 const gridID = shortid.generate();
 const gridDirectory = `./grid_${gridID}`;
 
@@ -18,7 +21,7 @@ const findAllPhotos = dir => {
       console.log(`Searching ${file}`)
       results = results.concat(findAllPhotos(file));
     } else { 
-      if (file.toLowerCase().endsWith('.jpg')) {
+      if (file.toLowerCase().endsWith(inputPhotosExtension)) {
         results.push(file);
       } else {
         console.log(`Skipping ${file}`);
@@ -41,13 +44,13 @@ while (i < photosArray.length) {
   const photosInRow = photosArray.slice(i, i + numPicsPerRow);
   const photosInRowWithNewResolution = photosInRow.map(filename => `'${filename}[${resolutionInGrid}]'`);
   const rowNum = String(i/numPicsPerRow).padStart(3, '0');
-  const args = [...photosInRowWithNewResolution, '+append', `${gridDirectory}/row_${rowNum}.jpg`];
+  const args = [...photosInRowWithNewResolution, '+append', `${gridDirectory}/row_${rowNum}${outputPhotoExtension}`];
   console.log(`Generating row ${rowNum} of ${Math.ceil(photosArray.length/numPicsPerRow)}...`);
   execSync(`magick ${args.join(' ')}`);
   i += numPicsPerRow;
 }
 
 console.log('Finished with rows, combining into grid...');
-const args = [`${gridDirectory}/row_*.jpg`, '-append', `${gridDirectory}/grid_with_${numPicsPerRow}_per_row.jpg`];
+const args = [`${gridDirectory}/row_*${outputPhotoExtension}`, '-append', `${gridDirectory}/grid_with_${numPicsPerRow}_per_row${outputPhotoExtension}`];
 execSync(`magick ${args.join(' ')}`);
 console.log('Done.')
