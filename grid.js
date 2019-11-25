@@ -2,11 +2,11 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 const shortid = require('shortid');
  
-const directoryWithPics = './photos';
-const numPicsPerRow = 50;
+const directoryWithPhotos = './photos';
+const numPicsPerRow = 60;
 const resolutionInGrid = '640x480';
 const inputPhotosExtension = '.jpg';
-const outputPhotoExtension = '.png';
+const outputPhotoExtension = '.jpg';
 
 const gridID = shortid.generate();
 const gridDirectory = `./grid_${gridID}`;
@@ -35,7 +35,7 @@ console.log(`Starting script with id ${gridID} to avoid name conflicts. Creating
 fs.mkdirSync(gridDirectory);
 
 console.log('Finding all photos...');
-const photosArray = findAllPhotos(directoryWithPics);
+const photosArray = findAllPhotos(directoryWithPhotos);
 
 console.log(`Generating ${Math.ceil(photosArray.length/numPicsPerRow)} rows with max ${numPicsPerRow} photos each for ${photosArray.length} total photos...`);
 
