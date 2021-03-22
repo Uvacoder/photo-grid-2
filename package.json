@@ -1,14 +1,15 @@
 {
-  "name": "photo-grid",
-  "version": "1.0.0",
-  "description": "generate a photo grid from jpgs",
-  "main": "grid.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Matt Lehrer",
-  "license": "ISC",
-  "dependencies": {
-    "shortid": "^2.2.15"
-  }
+	"name": "photo-grid",
+	"version": "1.0.0",
+	"description": "generate a photo grid from jpgs",
+	"main": "grid.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node grid"
+	},
+	"author": "Matt Lehrer",
+	"license": "ISC",
+	"dependencies": {
+		"shortid": "^2.2.15"
+	}
 }

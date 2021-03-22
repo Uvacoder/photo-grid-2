@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 const directoryWithPhotos = './photos';
 // const numPicsPerRow = 60;
 // const resolutionInGrid = '640x480';
-const newResolution = '320x240';
+const newResolution = '64x48';
 const inputPhotosExtension = '.jpg';
 const outputPhotoExtension = '.jpg';
 
@@ -45,7 +45,8 @@ try {
   console.log(e);
 }
 
-console.log('Finding all photos...');
+const start = new Date();
+console.log(`Finding all photos...`);
 const photosArray = findAllPhotos(directoryWithPhotos);
 
 // console.log(`Generating ${Math.ceil(photosArray.length/numPicsPerRow)} rows with max ${numPicsPerRow} photos each for ${photosArray.length} total photos...`);
@@ -54,6 +55,8 @@ console.log('Creating new lower res photos...')
 photosArray.forEach(f => {
   execSync(`magick "${f}" -resize ${newResolution} "./${f.replace(directoryWithPhotos, newResolution)}"`);
 });
+
+console.log(`Finished in ${(new Date() - start)/1000}`);
 
 // let i = 0;
 // while (i < photosArray.length) {
