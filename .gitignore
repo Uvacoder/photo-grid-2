@@ -1,4 +1,5 @@
 grid*
 *.jpg
+*.png
 photos
 node_modules
